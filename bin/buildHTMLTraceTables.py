@@ -25,7 +25,7 @@ class TraceTable(Document):
 
             informationString = information[key].replace(" ","")
             informationList = informationString.split(",")
-            if len(informationList) > 1:
+            if len(informationList) > 1 and informationList[0] == "":
                 informationList.pop(0)
             informationString = ", ".join(sorted(informationList))
             cellElement.appendChild(self.dom.createTextNode(informationString))
@@ -78,7 +78,6 @@ def main():
                     testCaseToRequirements[testID] = requirementID
                 else:
                     testCaseToRequirements[testID] = testCaseToRequirements[testID] + ", " + requirementID
- 
 
     TraceTable("tools_configuration/REQ_TEST_ID_TEMPLATE.html","req_test_id.html",requirementsToTestCase)
     TraceTable("tools_configuration/TEST_ID_REQ_TEMPLATE.html","test_id_req.html",testCaseToRequirements)
