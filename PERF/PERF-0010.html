@@ -1,0 +1,82 @@
+<?xml version="1.0" ?><html>
+<style>
+body { background-color: white; }
+body { font-family: sans-serif; }
+li { font-size: 80%; }
+</style>
+<body>
+<table BORDER="" WIDTH="90%">
+<tr>
+<td>
+Test Case
+</td>
+<td id="testCaseId">
+PERF-0010</td>
+</tr>
+<tr>
+<td>
+Title
+</td>
+<td id="title">
+servod can control up to 8 servos</td>
+</tr>
+<tr>
+<td>
+Objective
+</td>
+<td id="objective"><p>This test case is intended to verify the following implied or specified requirements:</p>
+<ul id="requirementsList">
+<li>servod shall control at least 8 servos.</li><li>Configuration of servod shall be done with the use of a text file, servoDefinitionFile.txt read when started.</li><li>Each line of the text file defines on servo and servos will be defined sequentially starting at zero.</li><li>servod shall confirm the input conforms to the following format: %d, %d\n.</li><li>servod shall confirm that the first integer digit string identifies a unique GPIO pin in the BCM format.</li><li>servod shall confirm that the second integer digit string identifies a DMA channel between 0 and 15.</li><li>Invalid file input shall cause servod termination.</li></ul>
+<p>This test case will start servod multiple times to show that 10 servos can be controlled simultaneously.  Also, the requirements associated with the provisioning of servo will be verified.</p></td>
+</tr>
+<tr>
+<td>
+Setup
+</td>
+<td>
+<ul id="setup">
+<li></li></ul>
+</td>
+</tr>
+<tr>
+<td>
+Actions
+</td>
+<td>
+<ol id="actions">
+<li> If servod is running, stop it. </li><li> Edit the servoDefinitionFile.txt to remove a servo definition.  Any will do. Record the one removed. </li><li> Start servod in non daemon/debug mode: <ul><li type="square"> sudo ./servod -d  </li></ul></li><li> Using piscope, verify 9 pulses are being generated instead of 10. </li><li> Stop servod. </li><li> Edit the servoDefinitionFile.txt to remove a servo definition.  Any will do. Record the one removed. </li><li> Start servod in non daemon/debug mode: <ul><li type="square"> sudo ./servod -d  </li></ul></li><li> Using piscope, verify 8 pulses are being generated instead of 9. </li><li> Stop servod. </li><li> Continue this process until the file is empty.  Record any failure - there should be no failure until the empty file is read. </li><li> Edit the servoDefinitionFile.txt to add an entry: <ul><li type="square"> servo, 5  </li></ul></li><li> Attempt to start servod in debug mode and it should issue a failure message. </li><li> Edit the servoDefinitionFile.txt to add an entry <ul><li type="square"> 18, 16 </li></ul></li><li> Attempt to start servod in debug mode and it should issue a failure message. </li><li> Edit the servoDefinitionFile.txt to add an entry <ul><li type="square"> 18, -1 </li></ul></li><li> Attempt to start servod in debug mode and it should issue a failure message. </li><li> Edit the servoDefinitionFile.txt to add an entry <ul><li type="square"> 18, 15 </li></ul></li><li> Attempt to start servod in debug mode and it should issue a failure message. </li><li> Edit the servoDefinitionFile.txt to add an entry <ul><li type="square"> 18 5 </li></ul></li><li> Attempt to start servod in debug mode and it should issue a failure message. </li><li> Edit the servoDefinitionFile.txt to add an entry <ul><li type="square"> 18, 5. </li></ul></li><li> Attempt to start servod in debug mode and it should issue a failure message. </li><li> Edit the servoDefinitionFile.txt to add an entry <ul><li type="square"> 17, 5 </li></ul></li><li> Add a second entry <ul><li type="square"> 18, 6 </li></ul></li><li> Start servod and it should start with no reported errors.  This defines two servos running on two different DMA channels.  </li><li> Using piscope, verify that the pulse widths are 1500 usec.</li></ol>
+</td>
+</tr>
+<tr>
+<td>
+Expected
+</td>
+<td id="expected">
+One to ten servos can be provisioned and the GPIO pin and DMA channel for each servo can be selected.</td>
+</tr>
+<tr>
+<td>
+Results
+</td>
+<td id="results">
+PASSED</td>
+</tr>
+<tr>
+<td>
+Cleanup
+</td>
+<td>
+<ul id="cleanup">
+<li></li></ul>
+</td>
+</tr>
+<tr>
+<td>
+Requirements
+</td>
+<td id="requirements">
+SERVO-PERF-010, SERVO-PROV-010, SERVO-PROV-010.001, SERVO-PROV-010.002, SERVO-PROV-010.003, SERVO-PROV-010.004, SERVO-PROV-010.005</td>
+</tr>
+</table>
+</body>
+</html>

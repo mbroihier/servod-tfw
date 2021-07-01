@@ -1,0 +1,2 @@
+INIT-0010
+servod starts on boot, initializes the configured servos to be at their null position (50% of the range), and opens a FIFO named /dev/servo_fifo

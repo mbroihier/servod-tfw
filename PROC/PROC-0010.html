@@ -1,0 +1,82 @@
+<?xml version="1.0" ?><html>
+<style>
+body { background-color: white; }
+body { font-family: sans-serif; }
+li { font-size: 80%; }
+</style>
+<body>
+<table BORDER="" WIDTH="90%">
+<tr>
+<td>
+Test Case
+</td>
+<td id="testCaseId">
+PROC-0010</td>
+</tr>
+<tr>
+<td>
+Title
+</td>
+<td id="title">
+servod reads input from the FIFO and validates its format</td>
+</tr>
+<tr>
+<td>
+Objective
+</td>
+<td id="objective"><p>This test case is intended to verify the following implied or specified requirements:</p>
+<ul id="requirementsList">
+<li>servod shall accept a line of text input from the FIFO.</li><li>servod shall confirm the input conforms to the following format: %d, %d\n.</li><li>servod shall confirm that the first integer digit string identifies a zero based servo number from 0 to the number of possible servos minus one.</li><li>servod shall confirm that the second integer digit string identifies a positive pulse width in microseconds from 1000 to 2000.</li></ul>
+<p>This test case intends to verify that servod detects input at the servo_fifo and validates the input to the requirements.</p></td>
+</tr>
+<tr>
+<td>
+Setup
+</td>
+<td>
+<ul id="setup">
+<li></li></ul>
+</td>
+</tr>
+<tr>
+<td>
+Actions
+</td>
+<td>
+<ol id="actions">
+<li> Terminate servod and start it by hand in the non-daemon mode. <ul><li type="square"> sudo ./servod -d  </li></ul></li><li> From another terminal session, send the following string: <ul><li type="square"> echo &quot;9, 1000&quot; &gt;/dev/servo_fifo  </li></ul></li><li> Verify that servod does not report an error. </li><li> Send another string: <ul><li type="square"> echo &quot;9, 2000&quot; &gt;/dev/servo_fifo  </li></ul></li><li> Verify that servod does not report an error. </li><li> Send an invalid string with an invalid servo number (10): <ul><li type="square"> echo &quot;10, 2000&quot; &gt;/dev/servo_fifo  </li></ul></li><li> Verify that servod reports that an invalid servo number was detected. </li><li> Send an invalid string with a pulse width out of range(999): <ul><li type="square"> echo &quot;9, 999&quot; &gt;/dev/servo_fifo  </li></ul></li><li> Verify that servod reports that the servo command was out of range. </li><li> Send an invalid string with a different pulse width out of range (2001): <ul><li type="square"> echo &quot;9, 2001&quot; &gt;/dev/servo_fifo  </li></ul></li><li> Verify that servod reports that the servo command was out of range. </li><li> Send and invalid command format: <ul><li type="square"> echo &quot;1234&quot; &gt;/dev/servo_fifo  </li></ul></li><li> Verify that servod reports that the input is invalid. </li><li> Send another invalid command format: <ul><li type="square"> echo &quot;1234 5678&quot; &gt;/dev/servo_fifo  </li></ul></li><li> Verify that servod reports that the input is invalid. </li><li> Send another invalid command format: <ul><li type="square"> echo &quot;1234,5678&quot; &gt;/dev/servo_fifo  </li></ul></li><li> Verify that servod reports that the input is invalid. </li><li> Send another invalid command format: <ul><li type="square"> echo &quot;9, 1000_&quot; &gt;/dev/servo_fifo  </li></ul></li><li> Verify that servod reports that the input is invalid.</li></ol>
+</td>
+</tr>
+<tr>
+<td>
+Expected
+</td>
+<td id="expected">
+servod will, in non-daemon mode, report that the input does not conform to the command format requirements.</td>
+</tr>
+<tr>
+<td>
+Results
+</td>
+<td id="results">
+PASSED</td>
+</tr>
+<tr>
+<td>
+Cleanup
+</td>
+<td>
+<ul id="cleanup">
+<li></li></ul>
+</td>
+</tr>
+<tr>
+<td>
+Requirements
+</td>
+<td id="requirements">
+SERVO-PR-FIFOI-010, SERVO-PR-FIFOI-010.001, SERVO-PR-FIFOI-010.002, SERVO-PR-FIFOI-010.003</td>
+</tr>
+</table>
+</body>
+</html>

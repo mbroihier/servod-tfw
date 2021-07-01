@@ -1,0 +1,44 @@
+SERVO-EXT-IF-010
+Servo control shall be through a FIFO pipe.
+SERVO-EXT-IF-020
+Servo output shall be 3.3 volt PWM signals to configurable GPIO pins.
+SERVO-PR-BOOT-010
+On boot, the servod shall read its configuration and set the servos to their initial state.
+SERVO-PR-BOOT-020
+The initial state of servod shall continuously send initial pulse widths to all the configured servos.
+SERVO-PR-BOOT-030
+servod shall initialize a FIFO pipe at location /dev/servo_fifo.
+SERVO-PR-FIFOI-010
+servod shall accept a line of text input from the FIFO.
+SERVO-PR-FIFOI-010.001
+servod shall confirm the input conforms to the following format: %d, %d\n.
+SERVO-PR-FIFOI-010.002
+servod shall confirm that the first integer digit string identifies a zero based servo number from 0 to the number of possible servos minus one.
+SERVO-PR-FIFOI-010.003
+servod shall confirm that the second integer digit string identifies a positive pulse width in microseconds from 1000 to 2000.
+SERVO-PR-FIFOI-010.004
+Invalid FIFO input (input that does not conform to the previous requirements), shall be discarded.
+SERVO-PR-FIFOI-020
+servod shall process valid text input from the FIFO.
+SERVO-PR-FIFOI-020.001
+servod shall use the first integer as an identifier of the servo to modify.
+SERVO-PR-FIFOI-020.002
+servod shall use the second integer to set the servo selected to the pulse width that matches the integer.
+SERVO-PROV-010
+Configuration of servod shall be done with the use of a text file, servoDefinitionFile.txt read when started.
+SERVO-PROV-010.001
+Each line of the text file defines on servo and servos will be defined sequentially starting at zero.
+SERVO-PROV-010.002
+servod shall confirm the input conforms to the following format: %d, %d\n.
+SERVO-PROV-010.003
+servod shall confirm that the first integer digit string identifies a unique GPIO pin in the BCM format.
+SERVO-PROV-010.004
+servod shall confirm that the second integer digit string identifies a DMA channel between 0 and 15.
+SERVO-PROV-010.005
+Invalid file input shall cause servod termination.
+SERVO-PERF-010
+  servod shall control at least 8 servos.
+SERVO-PERF-020
+ servod shall be able to set pulse widths with at least 1 usec resolution.
+SERVO-PERF-030
+ servod shall require less that 1% CPU utilization after initialization.

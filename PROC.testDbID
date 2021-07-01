@@ -1,0 +1,6 @@
+PROC-0010
+servod reads input from the FIFO and validates its format
+PROC-0020
+servod modifies the signal to the desired servo to match the pulse width request
+PROC-0030
+servod, running in daemon mode, modifies the signal to the desired servo to match the pulse width request

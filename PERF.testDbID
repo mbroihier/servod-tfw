@@ -1,0 +1,6 @@
+PERF-0010
+servod can control up to 8 servos
+PERF-0020
+Pulse width resolution is 1 microsecond
+PERF-0030
+CPU load is less than 1%

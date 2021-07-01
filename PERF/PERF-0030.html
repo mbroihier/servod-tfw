@@ -1,0 +1,82 @@
+<?xml version="1.0" ?><html>
+<style>
+body { background-color: white; }
+body { font-family: sans-serif; }
+li { font-size: 80%; }
+</style>
+<body>
+<table BORDER="" WIDTH="90%">
+<tr>
+<td>
+Test Case
+</td>
+<td id="testCaseId">
+PERF-0030</td>
+</tr>
+<tr>
+<td>
+Title
+</td>
+<td id="title">
+CPU load is less than 1%</td>
+</tr>
+<tr>
+<td>
+Objective
+</td>
+<td id="objective"><p>This test case is intended to verify the following implied or specified requirements:</p>
+<ul id="requirementsList">
+<li>servod shall require less that 1% CPU utilization after initialization.</li></ul>
+<p>This test case demonstrates that the CPU load is small (less than 1%).</p></td>
+</tr>
+<tr>
+<td>
+Setup
+</td>
+<td>
+<ul id="setup">
+<li></li></ul>
+</td>
+</tr>
+<tr>
+<td>
+Actions
+</td>
+<td>
+<ol id="actions">
+<li> Using the repository servoDefinitionFile.txt, run servod as a daemon. \bullet sudo ./servod <ul><li type="square"> </li></ul></li><li> Using a bash while loop, write a servo command to all ten servos and then wait a second. </li><li> While the loop is running, from another terminal run htop and record the CPU utilization of servod. </li><li> Verify the utilization is less than 1%.</li></ol>
+</td>
+</tr>
+<tr>
+<td>
+Expected
+</td>
+<td id="expected">
+</td>
+</tr>
+<tr>
+<td>
+Results
+</td>
+<td id="results">
+PASSED</td>
+</tr>
+<tr>
+<td>
+Cleanup
+</td>
+<td>
+<ul id="cleanup">
+<li></li></ul>
+</td>
+</tr>
+<tr>
+<td>
+Requirements
+</td>
+<td id="requirements">
+SERVO-PERF-030</td>
+</tr>
+</table>
+</body>
+</html>

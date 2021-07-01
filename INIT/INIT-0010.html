@@ -1,0 +1,82 @@
+<?xml version="1.0" ?><html>
+<style>
+body { background-color: white; }
+body { font-family: sans-serif; }
+li { font-size: 80%; }
+</style>
+<body>
+<table BORDER="" WIDTH="90%">
+<tr>
+<td>
+Test Case
+</td>
+<td id="testCaseId">
+INIT-0010</td>
+</tr>
+<tr>
+<td>
+Title
+</td>
+<td id="title">
+Daemon starts at boot</td>
+</tr>
+<tr>
+<td>
+Objective
+</td>
+<td id="objective"><p>This test case is intended to verify the following implied or specified requirements:</p>
+<ul id="requirementsList">
+<li>On boot, the servod shall read its configuration and set the servos to their initial state.</li><li>The initial state of servod shall continuously send initial pulse widths to all the configured servos.</li><li>servod shall initialize a FIFO pipe at location /dev/servo_fifo.</li><li>Servo control shall be through a FIFO pipe.</li><li>Servo output shall be 3.3 volt PWM signals to configurable GPIO pins.</li></ul>
+<p>This test case verifies that the daemon starts at boot and initializes the servos to a known state.</p></td>
+</tr>
+<tr>
+<td>
+Setup
+</td>
+<td>
+<ul id="setup">
+<li></li></ul>
+</td>
+</tr>
+<tr>
+<td>
+Actions
+</td>
+<td>
+<ol id="actions">
+<li> Install servod from the repository. </li><li> Using the README instructions, compile servod. </li><li> Using the README instructions, install servod as a service and enable it. </li><li> Boot the Pi. </li><li> Using piscope, verify that all the configured servos are being sent pulses of width 1.5 msec. </li><li> Using ls -l, verify that the FIFO, /dev/servo_fifo, exists.</li></ol>
+</td>
+</tr>
+<tr>
+<td>
+Expected
+</td>
+<td id="expected">
+servod starts on boot, initializes the configured servos to be at their null position (50% of the range), and opens a FIFO named /dev/servo_fifo</td>
+</tr>
+<tr>
+<td>
+Results
+</td>
+<td id="results">
+PASSED</td>
+</tr>
+<tr>
+<td>
+Cleanup
+</td>
+<td>
+<ul id="cleanup">
+<li></li></ul>
+</td>
+</tr>
+<tr>
+<td>
+Requirements
+</td>
+<td id="requirements">
+SERVO-PR-BOOT-010, SERVO-PR-BOOT-020, SERVO-PR-BOOT-030, SERVO-EXT-IF-010, SERVO-EXT-IF-020</td>
+</tr>
+</table>
+</body>
+</html>

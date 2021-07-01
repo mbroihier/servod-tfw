@@ -1,0 +1,140 @@
+ID:EXPECTED PROGRESS
+6/23/2021 0
+6/24/2021 1
+6/25/2021 2
+6/26/2021 3
+6/27/2021 4
+6/28/2021 5
+6/29/2021 7
+6/30/2021 7
+7/01/2021 7
+7/02/2021 7
+7/03/2021 7
+7/04/2021 7
+7/05/2021 7
+7/06/2021 7
+7/07/2021 7
+7/08/2021 7
+7/09/2021 7
+7/10/2021 7
+7/11/2021 7
+ID:INIT-0010
+Test Start Time: 6/24/2021 15:15 CDT
+Log data:
+Did this test on surCam PI.  Compiled ok, when I started the service I got the error 255/EXCEPTION
+Results: FAILED
+Test End Time: 6/24/2021 15:21 CDT
+Tester: Mark Broihier
+ID:INIT-0010
+Test Start Time: 6/24/2021 15:32 CDT
+Log data:
+Operator error - I didn't put a servoDefinitionFile.txt file into the same directory as the executable. So I'm redoing
+
+After reboot, piscope was seeing signals on GPIO pins (BCM) 4, 5, 6, 13, 17, 18, 22, 23, 25, and 25.  All pulse widths were 1500 usec.
+Results: PASSED
+Test End Time: 6/24/2021 15:47 CDT
+Tester: Mark Broihier
+ID:PROC-0010
+Test Start Time: 6/24/2021 15:48 CDT
+Log data:
+Stopped servod service (sudo systemctl stop servod).
+
+Started servod in non-daemon mode (sudo ./servod -d).
+
+echo "10, 2000" >/dev/servo_fifo should have failed and did because servo 10 does not exist, however, the DMA buffers were swapped which means that an older set of servo settings would be used because nothing updated the DMA buffers prior to the swap.
+Results: FAILED
+Test End Time: 6/24/2021 16:12 CDT
+Tester: Mark Broihier
+ID:PROC-0020
+Test Start Time: 6/24/2021 16:19 CDT
+Log data:
+In the last step of this test, where a servo of 10 (which doesn't exit) is commanded to 1000 usec, the test fails because the buffers are swapped to an old buffer.  Pin 17 started outputting a pulse width of 1000 usec which is not from this command, but a much older command.
+Results: FAILED
+Test End Time: 6/24/2021 16:55 CDT
+Tester: Mark Broihier
+ID:INIT-0010
+Test Start Time: 6/25/2021 11:00 CDT
+Log data:
+Retesting with b7b4b41 repository.  This should fix PROC failed cases.
+
+Passed as before.
+
+Results: PASSED
+Test End Time: 6/25/2021 11:09 CDT
+Tester: Mark Broihier
+ID:PROC-0010
+Test Start Time: 6/25/2021 11:12 CDT
+Log data:
+Used systemctl to stop servod.
+
+Properly detected invalid commands, but maybe should change error message to be more generic.
+Results: PASSED
+Test End Time: 6/25/2021 11:23 CDT
+Tester: Mark Broihier
+ID:PROC-0020
+Test Start Time: 6/25/2021 11:24 CDT
+Log data:
+servod was already running in non-daemon mode, so just continued from the previous test conditions setting servo 9 back to 1500.
+
+This time the reference to servo 10 did not cause a stale control block set from being swapped into use.
+Results: PASSED
+Test End Time: 6/25/2021 11:45 CDT
+Tester: Mark Broihier
+ID:PROC-0030
+Test Start Time: 6/25/2021 16:13 CDT
+Log data:
+
+Results: PASSED
+Test End Time: 6/25/2021 16:23 CDT
+Tester: Mark Broihier
+ID:PERF-0010
+Test Start Time: 6/25/2021 17:00 CDT
+Log data:
+First servo removed was pin 25, DMA channel 5.  Next was pin 4, DMA channel 5. Next was 13, 5.  Then 17, 5.  Then 22, 5.  Then 18, 5.  Then 5, 5.  Then 24, 5.  Then 23, 5.  Then the last entry.  With no servos, the program terminated.
+
+
+Results: PASSED
+Test End Time: 6/25/2021 17:22 CDT
+Tester: Mark Broihier
+ID:PERF-0010
+Test Start Time: 6/26/2021 09:42 CDT
+Log data:
+Redoing a portion of this test that I think should fail.  I think, with the current code, 15 should be a valid DMA channel - it's not, but I think the code lets it through.
+
+Ok, I did this with two servos, one was 17,5 and the other 18, 15.  servod starts.  Pin 18 has no signal and pin 17's signal is 750 usec instead of 1500 which is what would happen if only 1 DMA channel were properly configured but 2 DMA channels were thought to be active.
+
+I think the false positive was due to a space following the 15 in the control file.  During the edit process I found that it was easy to edit in an extra space.
+Results: FAILED
+Test End Time: 6/26/2021 09:50 CDT
+Tester: Mark Broihier
+ID:PERF-0020
+Test Start Time: 7/1/2021 14:12 CDT
+Log data:
+servo 3 was measured at 1502, 1501, 1503 and servo 9 was measured at 1511, 1508, 1509
+
+All others were measured at their expected times.
+
+Given that the resolution of sampling was 1 usec (highest of pigpiod), these measurements are likely acceptable.
+Results: PASSED
+Test End Time: 7/1/2021 14:34 CDT
+Tester: Mark Broihier
+ID:PERF-0010
+Test Start Time: 7/1/2021 14:42 CDT
+Log data:
+Retest with c0c8629 repository that should exclude servo 15 as being valid.
+
+Removed 6, 5, then 18,5, then 17, 5, then 4, 5, then 5, 5, then 23, 5, then 24, 5, then 22, 5, then 25, 5, and finally 13, 5.
+
+This time, the reference to DMA channel 15 failed as desired.
+
+
+Results: PASSED
+Test End Time: 7/1/2021 15:10 CDT
+Tester: Mark Broihier
+ID:PERF-0030
+Test Start Time: 7/1/2021 15:20 CDT
+Log data:
+Highest observed was 0.6% on a Raspberry Pi 0.
+Results: PASSED
+Test End Time: 7/1/2021 15:32 CDT
+Tester: Mark Broihier

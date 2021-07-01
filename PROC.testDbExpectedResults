@@ -1,0 +1,6 @@
+PROC-0010
+servod will, in non-daemon mode, report that the input does not conform to the command format requirements.
+PROC-0020
+servod does not update any servo signal if the input of the FIFO is bad, but updates the intended servo when the input is valid.
+PROC-0030
+servod does not update any servo signal if the input of the FIFO is bad, but updates the intended servo when the input is valid.

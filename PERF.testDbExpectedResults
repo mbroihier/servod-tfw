@@ -1,0 +1,6 @@
+PERF-0010
+One to ten servos can be provisioned and the GPIO pin and DMA channel for each servo can be selected.
+PERF-0020
+Pulse widths of the servo commands will range from 1500 to 1509 with resolution of 1 usec.
+PERF-0030
+

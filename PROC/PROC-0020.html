@@ -1,0 +1,82 @@
+<?xml version="1.0" ?><html>
+<style>
+body { background-color: white; }
+body { font-family: sans-serif; }
+li { font-size: 80%; }
+</style>
+<body>
+<table BORDER="" WIDTH="90%">
+<tr>
+<td>
+Test Case
+</td>
+<td id="testCaseId">
+PROC-0020</td>
+</tr>
+<tr>
+<td>
+Title
+</td>
+<td id="title">
+servod modifies the signal to the desired servo to match the pulse width request</td>
+</tr>
+<tr>
+<td>
+Objective
+</td>
+<td id="objective"><p>This test case is intended to verify the following implied or specified requirements:</p>
+<ul id="requirementsList">
+<li>servod shall accept a line of text input from the FIFO.</li><li>Invalid FIFO input (input that does not conform to the previous requirements), shall be discarded.</li><li>servod shall process valid text input from the FIFO.</li><li>servod shall use the first integer as an identifier of the servo to modify.</li><li>servod shall use the second integer to set the servo selected to the pulse width that matches the integer.</li></ul>
+<p>This test case verifies that valid input modifies the intended servo with the intended pulse width.</p></td>
+</tr>
+<tr>
+<td>
+Setup
+</td>
+<td>
+<ul id="setup">
+<li></li></ul>
+</td>
+</tr>
+<tr>
+<td>
+Actions
+</td>
+<td>
+<ol id="actions">
+<li> Terminate any running servod. </li><li> Start servod in non-daemon mode on a terminal: <ul><li type="square"> sudo ./servod -d  </li></ul></li><li> From another terminal, run piscope: <ul><li type="square"> piscope  </li></ul></li><li> Using piscope, verify that 10 servo signals are being sent and the pulse width of each signal is 1500 usec. </li><li> From another terminal, send a request to update a servo signal to servo 0: <ul><li type="square"> echo &quot;0, 1000&quot; &gt;/dev/servo_fifo  </li></ul></li><li> Verify that the pin associated with servo 0 changes its pulse width to 1000 usec. </li><li> Send a request to update a servo signal to servo 1: <ul><li type="square"> echo &quot;1, 1000&quot; &gt;/dev/servo_fifo  </li></ul></li><li> Verify that the pin associated with servo 1 changes its pulse width to 1000 usec. </li><li> Send a request to update a servo signal to servo 2: <ul><li type="square"> echo &quot;2, 1000&quot; &gt;/dev/servo_fifo  </li></ul></li><li> Verify that the pin associated with servo 2 changes its pulse width to 1000 usec. </li><li> Send a request to update a servo signal to servo 3: <ul><li type="square"> echo &quot;3, 1000&quot; &gt;/dev/servo_fifo  </li></ul></li><li> Verify that the pin associated with servo 3 changes its pulse width to 1000 usec. </li><li> Send a request to update a servo signal to servo 4: <ul><li type="square"> echo &quot;4, 1000&quot; &gt;/dev/servo_fifo  </li></ul></li><li> Verify that the pin associated with servo 4 changes its pulse width to 1000 usec. </li><li> Send a request to update a servo signal to servo 5: <ul><li type="square"> echo &quot;5, 1000&quot; &gt;/dev/servo_fifo  </li></ul></li><li> Verify that the pin associated with servo 5 changes its pulse width to 1000 usec. </li><li> Send a request to update a servo signal to servo 6: <ul><li type="square"> echo &quot;6, 1000&quot; &gt;/dev/servo_fifo  </li></ul></li><li> Verify that the pin associated with servo 6 changes its pulse width to 1000 usec. </li><li> Send a request to update a servo signal to servo 7: <ul><li type="square"> echo &quot;7, 1000&quot; &gt;/dev/servo_fifo  </li></ul></li><li> Verify that the pin associated with servo 7 changes its pulse width to 1000 usec. </li><li> Send a request to update a servo signal to servo 8: <ul><li type="square"> echo &quot;8, 1000&quot; &gt;/dev/servo_fifo  </li></ul></li><li> Verify that the pin associated with servo 8 changes its pulse width to 1000 usec. </li><li> Send a request to update a servo signal to servo 9: <ul><li type="square"> echo &quot;9, 1000&quot; &gt;/dev/servo_fifo  </li></ul></li><li> Verify that the pin associated with servo 9 changes its pulse width to 1000 usec. </li><li> Send a request to update a servo signal to servo 9: <ul><li type="square"> echo &quot;9, 2000&quot; &gt;/dev/servo_fifo  </li></ul></li><li> Verify that the pin associated with servo 9 changes its pulse width to 2000 usec. </li><li> Send a request to update a servo signal to servo 8: <ul><li type="square"> echo &quot;8, 2000&quot; &gt;/dev/servo_fifo  </li></ul></li><li> Verify that the pin associated with servo 8 changes its pulse width to 2000 usec. </li><li> Send a request to update a servo signal to servo 7: <ul><li type="square"> echo &quot;7, 2000&quot; &gt;/dev/servo_fifo  </li></ul></li><li> Verify that the pin associated with servo 7 changes its pulse width to 2000 usec. </li><li> Send a request to update a servo signal to servo 6: <ul><li type="square"> echo &quot;6, 2000&quot; &gt;/dev/servo_fifo  </li></ul></li><li> Verify that the pin associated with servo 6 changes its pulse width to 2000 usec. </li><li> Send a request to update a servo signal to servo 5: <ul><li type="square"> echo &quot;5, 2000&quot; &gt;/dev/servo_fifo  </li></ul></li><li> Verify that the pin associated with servo 5 changes its pulse width to 2000 usec. </li><li> Send a request to update a servo signal to servo 4: <ul><li type="square"> echo &quot;4, 2000&quot; &gt;/dev/servo_fifo  </li></ul></li><li> Verify that the pin associated with servo 4 changes its pulse width to 2000 usec. </li><li> Send a request to update a servo signal to servo 3: <ul><li type="square"> echo &quot;3, 2000&quot; &gt;/dev/servo_fifo  </li></ul></li><li> Verify that the pin associated with servo 3 changes its pulse width to 2000 usec. </li><li> Send a request to update a servo signal to servo 2: <ul><li type="square"> echo &quot;2, 2000&quot; &gt;/dev/servo_fifo  </li></ul></li><li> Verify that the pin associated with servo 2 changes its pulse width to 2000 usec. </li><li> Send a request to update a servo signal to servo 1: <ul><li type="square"> echo &quot;1, 2000&quot; &gt;/dev/servo_fifo  </li></ul></li><li> Verify that the pin associated with servo 1 changes its pulse width to 2000 usec. </li><li> Send a request to update a servo signal to servo 0: <ul><li type="square"> echo &quot;0, 2000&quot; &gt;/dev/servo_fifo  </li></ul></li><li> Verify that the pin associated with servo 0 changes its pulse width to 2000 usec. </li><li> Send an illegally formatted servo command of: <ul><li type="square"> echo &quot;&quot; &gt; /dev/servo_fifo  </li></ul></li><li> Verify that all servos retain a pulse width of 2000 usec. </li><li> Send an illegally formatted servo command of: <ul><li type="square"> echo &quot;9 1000&quot; &gt; /dev/servo_fifo  </li></ul></li><li> Verify that all servos retain a pulse width of 2000 usec. </li><li> Send an out of bounds servo command of: <ul><li type="square"> echo &quot;9, 10&quot; &gt; /dev/servo_fifo  </li></ul></li><li> Verify that all servos retain a pulse width of 2000 usec. </li><li> Send a servo command with an invalid servo reference of: <ul><li type="square"> echo &quot;10, 1000&quot; &gt; /dev/servo_fifo  </li></ul></li><li> Verify that all servos retain a pulse width of 2000 usec.</li></ol>
+</td>
+</tr>
+<tr>
+<td>
+Expected
+</td>
+<td id="expected">
+servod does not update any servo signal if the input of the FIFO is bad, but updates the intended servo when the input is valid.</td>
+</tr>
+<tr>
+<td>
+Results
+</td>
+<td id="results">
+PASSED</td>
+</tr>
+<tr>
+<td>
+Cleanup
+</td>
+<td>
+<ul id="cleanup">
+<li></li></ul>
+</td>
+</tr>
+<tr>
+<td>
+Requirements
+</td>
+<td id="requirements">
+SERVO-PR-FIFOI-010, SERVO-PR-FIFOI-010.004, SERVO-PR-FIFOI-020, SERVO-PR-FIFOI-020.001, SERVO-PR-FIFOI-020.002</td>
+</tr>
+</table>
+</body>
+</html>

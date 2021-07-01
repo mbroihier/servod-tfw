@@ -1,0 +1,6 @@
+PROC-0010:SERVO-PR-FIFOI-010, SERVO-PR-FIFOI-010.001, SERVO-PR-FIFOI-010.002, SERVO-PR-FIFOI-010.003
+This test case intends to verify that servod detects input at the servo_fifo and validates the input to the requirements.
+PROC-0020:SERVO-PR-FIFOI-010, SERVO-PR-FIFOI-010.004, SERVO-PR-FIFOI-020, SERVO-PR-FIFOI-020.001, SERVO-PR-FIFOI-020.002
+This test case verifies that valid input modifies the intended servo with the intended pulse width.
+PROC-0030:SERVO-PR-FIFOI-010, SERVO-PR-FIFOI-010.004, SERVO-PR-FIFOI-020, SERVO-PR-FIFOI-020.001, SERVO-PR-FIFOI-020.002
+This test case verifies that valid input modifies the intended servo with the intended pulse width.

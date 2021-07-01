@@ -1,0 +1,2 @@
+INIT-0010:SERVO-PR-BOOT-010, SERVO-PR-BOOT-020, SERVO-PR-BOOT-030, SERVO-EXT-IF-010, SERVO-EXT-IF-020
+This test case verifies that the daemon starts at boot and initializes the servos to a known state.

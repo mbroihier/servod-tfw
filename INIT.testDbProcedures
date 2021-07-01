@@ -1,0 +1,2 @@
+INIT-0010
+/step Install servod from the repository.\step /step Using the README instructions, compile servod.\step /step Using the README instructions, install servod as a service and enable it.\step /step Boot the Pi.\step /step Using piscope, verify that all the configured servos are being sent pulses of width 1.5 msec.\step /step Using ls -l, verify that the FIFO, /dev/servo_fifo, exists.\step 

@@ -1,0 +1,82 @@
+<?xml version="1.0" ?><html>
+<style>
+body { background-color: white; }
+body { font-family: sans-serif; }
+li { font-size: 80%; }
+</style>
+<body>
+<table BORDER="" WIDTH="90%">
+<tr>
+<td>
+Test Case
+</td>
+<td id="testCaseId">
+PERF-0020</td>
+</tr>
+<tr>
+<td>
+Title
+</td>
+<td id="title">
+Pulse width resolution is 1 microsecond</td>
+</tr>
+<tr>
+<td>
+Objective
+</td>
+<td id="objective"><p>This test case is intended to verify the following implied or specified requirements:</p>
+<ul id="requirementsList">
+<li>servod shall be able to set pulse widths with at least 1 usec resolution.</li></ul>
+<p>This test case verifies that the user has the ability to adjust the pulse width with 1 microsecond precision.</p></td>
+</tr>
+<tr>
+<td>
+Setup
+</td>
+<td>
+<ul id="setup">
+<li></li></ul>
+</td>
+</tr>
+<tr>
+<td>
+Actions
+</td>
+<td>
+<ol id="actions">
+<li> Start the servod daemon with the repository servoDefinitionFile.txt. </li><li> Start pigpiod with 1 usec resolution. </li><li> Set each servo to 1500 usec + the servo number (e.g. echo &quot;5, 1505&quot; &gt;/dev/servo_fifo). </li><li> Using piscope, verify that each pulse width is unique and equal to the setting.</li></ol>
+</td>
+</tr>
+<tr>
+<td>
+Expected
+</td>
+<td id="expected">
+Pulse widths of the servo commands will range from 1500 to 1509 with resolution of 1 usec.</td>
+</tr>
+<tr>
+<td>
+Results
+</td>
+<td id="results">
+PASSED</td>
+</tr>
+<tr>
+<td>
+Cleanup
+</td>
+<td>
+<ul id="cleanup">
+<li></li></ul>
+</td>
+</tr>
+<tr>
+<td>
+Requirements
+</td>
+<td id="requirements">
+SERVO-PERF-020</td>
+</tr>
+</table>
+</body>
+</html>
